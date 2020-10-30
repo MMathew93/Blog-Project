@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "Posts"
+  name: "HeaderComponent"
 };
 </script>
 

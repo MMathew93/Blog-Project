@@ -1,13 +1,16 @@
 <template>
-  <section class="posts">
+  <section>
     <div class="columns">
       <div class="column"></div>
       <div class="column is-three-quarters content">
         <div class="post-boxes" v-for="post in posts" :key="post._id">
-          <div class="post tile notification">
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.text }}</p>
-            <p>{{ post.postedDate }}</p>
+          <div :id="`${post._id}`" class="article">
+            <div class="post tile notification">
+              <h1>{{ post.title }}</h1>
+              <p>{{ post.text }}</p>
+              <p>{{ post.postedDate }}</p>
+              <ReadMoreComponent :postId="post._id" />
+            </div>
           </div>
         </div>
       </div>
@@ -18,32 +21,43 @@
 
 <script>
 import axios from "axios";
+import ReadMoreComponent from "@/components/ReadMoreComponent";
+
 export default {
-  name: "Posts",
+  name: "PostsComponent",
+  components: {
+    ReadMoreComponent
+  },
   data() {
     return {
       posts: []
     };
   },
-  mounted() {
-    axios
-      .get("http://localhost:3000/posts/published")
-      .then(res => {
-        this.posts = res.data;
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  async mounted() {
+    try {
+      const res = await axios.get("http://localhost:3000/posts/published");
+      this.posts = res.data;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 };
 </script>
 
 <style>
+.post-boxes {
+  width: 100%;
+}
+
+.article {
+  position: relative;
+}
+
 .post {
   display: flex;
   flex-direction: column;
   margin: 25px;
   background-color: rgb(248 134 36) !important;
+  max-width: 100%;
 }
 </style>

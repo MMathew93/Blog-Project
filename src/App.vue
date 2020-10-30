@@ -5,6 +5,15 @@
 </template>
 
 <style>
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: rgb(67, 70, 75);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -12,7 +21,6 @@
   text-align: center;
   color: black;
   background-color: rgb(67, 70, 75);
-  height: 100vh;
 }
 
 #nav {

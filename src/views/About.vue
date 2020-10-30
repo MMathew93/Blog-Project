@@ -61,6 +61,7 @@
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent";
+
 export default {
   name: "About",
   components: {
