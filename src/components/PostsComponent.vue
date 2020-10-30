@@ -22,6 +22,7 @@
 <script>
 import axios from "axios";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
+import dayjs from "dayjs";
 
 export default {
   name: "PostsComponent",
@@ -36,9 +37,23 @@ export default {
   async mounted() {
     try {
       const res = await axios.get("http://localhost:3000/posts/published");
+      this.formatDate(res.data);
       this.posts = res.data;
     } catch (err) {
       throw new Error(err);
+    }
+  },
+  methods: {
+    formatDate(dataArr) {
+      if (dataArr instanceof Array) {
+        dataArr.forEach(data => {
+          if (data.postedDate) {
+            return (data.postedDate = dayjs(data.postedDate).format(
+              "MM/DD/YYYY"
+            ));
+          }
+        });
+      }
     }
   }
 };

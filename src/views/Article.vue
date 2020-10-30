@@ -8,7 +8,7 @@
           <article>
             <div class="article-content">
               <h1>{{ post.title }}</h1>
-              <p>{{ post.postedDate }}</p>
+              <span>{{ formattedDate }}</span>
               <p>{{ post.text }}</p>
             </div>
             <hr />
@@ -28,6 +28,7 @@
 import HeaderComponent from "@/components/HeaderComponent";
 import CommentsComponent from "@/components/CommentsComponent";
 import axios from "axios";
+import dayjs from "dayjs";
 
 export default {
   name: "Article",
@@ -45,9 +46,13 @@ export default {
     try {
       const res = await axios.get("http://localhost:3000/posts/" + this.id);
       this.post = res.data;
-      console.log(this.post)
     } catch (err) {
       throw new Error(err);
+    }
+  },
+  computed: {
+    formattedDate() {
+      return dayjs(this.post.postedDate).format("MM/DD/YYYY");
     }
   }
 };
@@ -69,6 +74,6 @@ article {
 
 .button-box {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 </style>

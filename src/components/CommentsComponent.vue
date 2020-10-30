@@ -19,6 +19,7 @@
 
 <script>
 import axios from "axios";
+import dayjs from "dayjs";
 
 export default {
   name: "CommentsComponents",
@@ -33,9 +34,23 @@ export default {
       const res = await axios.get(
         "http://localhost:3000/posts/" + this.postId + "/comments"
       );
+      this.formatDate(res.data);
       this.comments = res.data;
     } catch (err) {
       throw new Error(err);
+    }
+  },
+  methods: {
+    formatDate(dataArr) {
+      if (dataArr instanceof Array) {
+        dataArr.forEach(data => {
+          if (data.postedDate) {
+            return (data.postedDate = dayjs(data.postedDate).format(
+              "MM/DD/YYYY"
+            ));
+          }
+        });
+      }
     }
   }
 };
