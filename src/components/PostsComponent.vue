@@ -6,9 +6,27 @@
         <div class="post-boxes" v-for="post in posts" :key="post._id">
           <div :id="`${post._id}`" class="article">
             <div class="post tile notification">
-              <h1>{{ post.title }}</h1>
-              <p>{{ post.text }}</p>
-              <p>{{ post.postedDate }}</p>
+              <h1>
+                {{
+                  post.title.split(" ").length > 8
+                    ? post.title
+                        .split(" ")
+                        .slice(0, 8)
+                        .join(" ") + "..."
+                    : post.title
+                }}
+              </h1>
+              <span>{{ post.postedDate }}</span>
+              <p>
+                {{
+                  post.text.split(" ").length > 25
+                    ? post.text
+                        .split(" ")
+                        .slice(0, 25)
+                        .join(" ") + "..."
+                    : post.text
+                }}
+              </p>
               <ReadMoreComponent :postId="post._id" />
             </div>
           </div>
@@ -38,6 +56,7 @@ export default {
     try {
       const res = await axios.get("http://localhost:3000/posts/published");
       this.formatDate(res.data);
+      this.sortPosts(res.data);
       this.posts = res.data;
     } catch (err) {
       throw new Error(err);
@@ -54,6 +73,15 @@ export default {
           }
         });
       }
+    },
+    sortPosts(dataArr) {
+      dataArr.sort((a, b) => {
+        if (a.date > b.date) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
     }
   }
 };
@@ -68,11 +96,23 @@ export default {
   position: relative;
 }
 
+.content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
 .post {
   display: flex;
   flex-direction: column;
   margin: 25px;
   background-color: rgb(248 134 36) !important;
   max-width: 100%;
+  max-height: 100%;
+  text-align: left;
+}
+
+p {
+  font-size: 18px;
 }
 </style>
