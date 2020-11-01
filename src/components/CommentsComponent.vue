@@ -1,20 +1,28 @@
 <template>
-  <section>
-    <div class="commentSection">
-      <div class="comment-boxes" v-for="comment in comments" :key="comment._id">
-        <div :id="`${comment._id}`">
-          <div class="commentInfo">
-            <p>{{ comment.username }}</p>
-            <i class="fas fa-circle"></i>
-            <p>{{ comment.postedDate }}</p>
-          </div>
-          <div class="commentText">
-            <p>{{ comment.text }}</p>
+  <div>
+    <section>
+      <div class="commentSection">
+        <div
+          class="comment-boxes"
+          v-for="comment in comments"
+          :key="comment._id"
+        >
+          <div :id="`${comment._id}`">
+      
+              <div class="commentInfo">
+                <p class="text">{{ comment.username }}</p>
+                <i class="fas fa-circle dot"></i>
+                <p class="text">{{ comment.postedDate }}</p>
+              </div>
+              <div class="commentText">
+                <p class="text">{{ comment.text }}</p>
+              </div>
+            
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -58,7 +66,7 @@ export default {
 
 <style>
 .comment-boxes {
-  margin: 25px;
+  margin: 25px auto;
   background-color: rgb(67, 70, 75);
   text-align: left;
   padding: 1.5rem;
@@ -73,11 +81,11 @@ export default {
   margin: 5px;
 }
 
-p {
+.text {
   margin: 0px !important;
 }
 
-.fas {
+.dot {
   margin: 0 10px;
   font-size: 5px;
 }

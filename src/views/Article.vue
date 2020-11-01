@@ -5,18 +5,24 @@
       <div class="columns">
         <div class="column"></div>
         <div class="column is-three-quarters content">
-          <article>
-            <div class="article-content">
-              <h1>{{ post.title }}</h1>
-              <span>{{ formattedDate }}</span>
-              <p>{{ post.text }}</p>
+          <div class="article-box">
+            <div :id="`${post._id}`">
+              <article class="tile notification">
+                <div class="article-content">
+                  <h1>{{ post.title }}</h1>
+                  <span>{{ formattedDate }}</span>
+                  <p>{{ post.text }}</p>
+                </div>
+                <hr />
+                <div class="button-box">
+                  <b-button> Post a comment! </b-button>
+                </div>
+                <div>
+                  <CommentsComponent :postId="this.id" />
+                </div>
+              </article>
             </div>
-            <hr />
-            <div class="button-box">
-              <b-button> Post a comment! </b-button>
-            </div>
-            <CommentsComponent :postId="this.id" />
-          </article>
+          </div>
         </div>
         <div class="column"></div>
       </div>
@@ -59,6 +65,10 @@ export default {
 </script>
 
 <style>
+.article-box {
+  width: 100%;
+}
+
 article {
   display: flex;
   flex-direction: column;
@@ -67,11 +77,9 @@ article {
   max-width: 100%;
   padding: 5rem;
 }
-
 .article-content {
   text-align: left;
 }
-
 .button-box {
   display: flex;
   justify-content: flex-end;

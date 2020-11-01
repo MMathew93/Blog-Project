@@ -115,4 +115,8 @@ export default {
 p {
   font-size: 18px;
 }
+
+.notification {
+  padding: 1.25rem !important;
+}
 </style>
