@@ -7,7 +7,7 @@
         </b-navbar-item>
       </template>
       <template slot="end">
-        <b-navbar-dropdown label="Info">
+        <b-navbar-dropdown right collapsible label="Info">
           <b-navbar-item tag="router-link" :to="{ path: '/about' }">
             About Me
           </b-navbar-item>

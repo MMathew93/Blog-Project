@@ -15,11 +15,14 @@
                 </div>
                 <hr />
                 <div class="button-box">
-                  <b-button> Post a comment! </b-button>
+                  <b-button @click="toggle = !toggle" :disabled="toggle">
+                    Post a comment!
+                  </b-button>
                 </div>
-                <div>
-                  <CommentsComponent :postId="this.id" />
+                <div v-if="toggle" class="postcomment">
+                  <CommentModal :postId="this.id" @cancelled="childEvent" />
                 </div>
+                <CommentsComponent :postId="this.id" />
               </article>
             </div>
           </div>
@@ -33,6 +36,7 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent";
 import CommentsComponent from "@/components/CommentsComponent";
+import CommentModal from "@/components/CommentModal";
 import axios from "axios";
 import dayjs from "dayjs";
 
@@ -41,11 +45,13 @@ export default {
   props: { id: String },
   components: {
     HeaderComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentModal
   },
   data() {
     return {
-      post: ""
+      post: "",
+      toggle: false
     };
   },
   async mounted() {
@@ -60,6 +66,11 @@ export default {
     formattedDate() {
       return dayjs(this.post.postedDate).format("MM/DD/YYYY");
     }
+  },
+  methods: {
+    childEvent: function() {
+      this.toggle = false;
+    }
   }
 };
 </script>
@@ -67,6 +78,10 @@ export default {
 <style>
 .article-box {
   width: 100%;
+}
+
+h1 {
+  color: black !important;
 }
 
 article {
@@ -77,11 +92,22 @@ article {
   max-width: 100%;
   padding: 5rem;
 }
+
 .article-content {
   text-align: left;
+  color: black;
 }
+
 .button-box {
   display: flex;
   justify-content: flex-end;
+}
+
+.postcomment {
+  background-color: rgb(30, 30, 30);
+  text-align: left;
+  padding: 1.5rem;
+  font-size: 18px;
+  border-radius: 4px;
 }
 </style>

@@ -8,16 +8,14 @@
           :key="comment._id"
         >
           <div :id="`${comment._id}`">
-      
-              <div class="commentInfo">
-                <p class="text">{{ comment.username }}</p>
-                <i class="fas fa-circle dot"></i>
-                <p class="text">{{ comment.postedDate }}</p>
-              </div>
-              <div class="commentText">
-                <p class="text">{{ comment.text }}</p>
-              </div>
-            
+            <div class="commentInfo">
+              <p class="text">{{ comment.username }}</p>
+              <i class="fas fa-circle dot"></i>
+              <p class="text">{{ comment.postedDate }}</p>
+            </div>
+            <div class="commentText">
+              <p class="text">{{ comment.text }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -43,6 +41,7 @@ export default {
         "http://localhost:3000/posts/" + this.postId + "/comments"
       );
       this.formatDate(res.data);
+      this.sortComments(res.data);
       this.comments = res.data;
     } catch (err) {
       throw new Error(err);
@@ -59,6 +58,15 @@ export default {
           }
         });
       }
+    },
+    sortComments(dataArr) {
+      dataArr.sort((a, b) => {
+        if (a.date > b.date) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
     }
   }
 };
@@ -67,11 +75,12 @@ export default {
 <style>
 .comment-boxes {
   margin: 25px auto;
-  background-color: rgb(67, 70, 75);
+  background-color: rgb(30, 30, 30);
   text-align: left;
   padding: 1.5rem;
   font-size: 18px;
   border-radius: 4px;
+  color: white;
 }
 
 .commentInfo,
