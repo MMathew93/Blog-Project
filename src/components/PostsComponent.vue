@@ -17,16 +17,7 @@
                 }}
               </h1>
               <span>{{ post.postedDate }}</span>
-              <p>
-                {{
-                  post.text.split(" ").length > 25
-                    ? post.text
-                        .split(" ")
-                        .slice(0, 25)
-                        .join(" ") + "..."
-                    : post.text
-                }}
-              </p>
+              <div v-html="post.text" class="intro"></div>
               <ReadMoreComponent :postId="post._id" />
             </div>
           </div>
@@ -88,6 +79,9 @@ export default {
 </script>
 
 <style>
+.title {
+  font-size: 4rem;
+}
 .post-boxes {
   width: 100%;
 }
@@ -110,6 +104,11 @@ export default {
   max-width: 100%;
   max-height: 100%;
   text-align: left;
+}
+
+.intro {
+  height: 70px;
+  overflow: hidden;
 }
 
 p {

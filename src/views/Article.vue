@@ -11,7 +11,7 @@
                 <div class="article-content">
                   <h1>{{ post.title }}</h1>
                   <span>{{ formattedDate }}</span>
-                  <p>{{ post.text }}</p>
+                  <div v-html="post.text">}</div>
                 </div>
                 <hr />
                 <div class="button-box">
