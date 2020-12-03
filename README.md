@@ -19,12 +19,12 @@ MongoDB some more. Really fun creating my own API to pull data from instead of p
 
 
 ## Associated Project Links
-https://github.com/MMathew93/my-blog-api 
+https://github.com/MMathew93/my-blog-api  
 https://github.com/MMathew93/Blog-author  
 
 
 ## Demo
-![](userblogside_demo.gif)
+![](userblogside_demo-1.gif)
 
 ## Project setup
 ```
