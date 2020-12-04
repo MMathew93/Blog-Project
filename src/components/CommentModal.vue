@@ -36,7 +36,9 @@ export default {
       };
       try {
         axios.post(
-          "http://localhost:3000/posts/" + this.postId + "/comments/new",
+          "https://my-personal-blog-api.herokuapp.com/" +
+            this.postId +
+            "/comments/new",
           newComment
         );
         this.username = "";
