@@ -56,7 +56,8 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get("http://localhost:3000/posts/" + this.id);
+      let uri = "/tokens";
+      const res = await axios.get(uri + this.id);
       this.post = res.data;
     } catch (err) {
       throw new Error(err);

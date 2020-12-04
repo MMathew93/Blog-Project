@@ -37,9 +37,8 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get(
-        "http://localhost:3000/posts/" + this.postId + "/comments"
-      );
+      let uri = "/tokens";
+      const res = await axios.get(uri + this.postId + "/comments");
       this.formatDate(res.data);
       this.sortComments(res.data);
       this.comments = res.data;

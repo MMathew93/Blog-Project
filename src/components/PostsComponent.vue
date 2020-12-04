@@ -45,7 +45,8 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get("http://localhost:3000/posts/published");
+      let uri = "/tokens";
+      const res = await axios.get(uri);
       this.formatDate(res.data);
       this.sortPosts(res.data);
       this.posts = res.data;
