@@ -36,7 +36,7 @@ export default {
       };
       try {
         axios.post(
-          "https://my-personal-blog-api.herokuapp.com/" +
+          "https://my-personal-blog-api.herokuapp.com/posts/" +
             this.postId +
             "/comments/new",
           newComment
