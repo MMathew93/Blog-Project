@@ -56,8 +56,9 @@ export default {
   },
   async mounted() {
     try {
-      let uri = "/tokens";
-      const res = await axios.get(uri + this.id);
+      const res = await axios.get(
+        "https://my-personal-blog-api.herokuapp.com/" + this.id
+      );
       this.post = res.data;
     } catch (err) {
       throw new Error(err);

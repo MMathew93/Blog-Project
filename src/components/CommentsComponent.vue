@@ -37,8 +37,11 @@ export default {
   },
   async mounted() {
     try {
-      let uri = "/tokens";
-      const res = await axios.get(uri + this.postId + "/comments");
+      const res = await axios.get(
+        "https://my-personal-blog-api.herokuapp.com/" +
+          this.postId +
+          "/comments"
+      );
       this.formatDate(res.data);
       this.sortComments(res.data);
       this.comments = res.data;

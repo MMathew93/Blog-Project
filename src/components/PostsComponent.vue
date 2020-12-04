@@ -45,8 +45,9 @@ export default {
   },
   async mounted() {
     try {
-      let uri = "/tokens";
-      const res = await axios.get(uri);
+      const res = await axios.get(
+        "https://my-personal-blog-api.herokuapp.com/"
+      );
       this.formatDate(res.data);
       this.sortPosts(res.data);
       this.posts = res.data;
