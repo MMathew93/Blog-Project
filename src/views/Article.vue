@@ -57,7 +57,7 @@ export default {
   async mounted() {
     try {
       const res = await axios.get(
-        "https://my-personal-blog-api.herokuapp.com/" + this.id
+        "https://my-personal-blog-api.herokuapp.com/posts" + this.id
       );
       this.post = res.data;
     } catch (err) {

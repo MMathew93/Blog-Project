@@ -38,7 +38,7 @@ export default {
   async mounted() {
     try {
       const res = await axios.get(
-        "https://my-personal-blog-api.herokuapp.com/" +
+        "https://my-personal-blog-api.herokuapp.com/posts/" +
           this.postId +
           "/comments"
       );
